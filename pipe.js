@@ -32,15 +32,13 @@ class Pipe {
     // return (bird.x == this.x); 
     //this.x = capatul din dreapta
     var rightEnd = this.x + this.w; 
-    let halfBirdHeight = bird.height / 2;
-    let halfBirdwidth = bird.width / 2;
+    let correction = bird.width / 4;
 
     if(
-      (bird.y - halfBirdHeight < this.top || bird.y + halfBirdwidth >= height - this.bottom) //hit vertically 
-       && (rightEnd >= bird.x && bird.x > this.x ) 
-       ){ 
+      (bird.y - correction < this.top || bird.y + correction >= height - this.bottom) /*hit vertically */
+      && (rightEnd >= bird.x && bird.x + 16 > this.x)){ 
 
-        console.log("hit");
+      console.log(bird.y + " " + bird.y + correction, this.top, " hit");
         //bird.x = 64
         //pipes.x capatul din stanga
         //pipes.x + pipes.w = 96 => capatul din dreapta

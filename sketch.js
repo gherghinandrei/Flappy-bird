@@ -3,7 +3,7 @@ var bird;
 var pipe;
 var pipes;
 var pipeOrderNumber = 0;
-
+var gameoverFrame = 0;
 var isOver;
 var spacing = 120;
 var score;
@@ -22,9 +22,8 @@ function draw() {
   bird.show();
   showScore();
 
-  if(frameCount % 100 == 0) {
+  if ((frameCount - gameoverFrame) % 100 == 0) {
     pipes.push(new Pipe());
-
   }
 
   for(var i = pipes.length - 1; i >= 0; i--) {
@@ -52,10 +51,12 @@ function keyPressed() {
   if(key == ' ') {
     bird.up();
 
-
   } else{
+      if(isOver != 0){
       reset();
-      console.log("reset");
+        console.log("reset");
+      }
+      return
     }
 
   }
@@ -67,6 +68,7 @@ function keyPressed() {
 function reset() {
 
   score = 0;
+  gameoverFrame = frameCount - 1;
   pipes = [];
   isOver = false;
   bird = new Bird();
