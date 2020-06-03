@@ -11,10 +11,12 @@ class Pipe {
 
   show() {
 
-    fill(255);
-    rect(this.x, 0, this.w, this.top);
-    fill(255);
-    rect(this.x, height - this.bottom, this.w, this.bottom); 
+    // fill(255);
+    image(pipeSpriteTop, this.x, 0, this.w, this.top);
+    // rect(this.x, 0, this.w, this.top);
+    // fill(255);
+    image(pipeSpriteBottom, this.x, height - this.bottom, this.w, this.bottom); 
+    // rect(this.x, height - this.bottom, this.w, this.bottom); 
   } 
 
 
@@ -32,17 +34,9 @@ class Pipe {
     // return (bird.x == this.x); 
     //this.x = capatul din dreapta
     var rightEnd = this.x + this.w; 
-    let correction = bird.width / 4;
+    let correction = bird.width / 2;
 
-    if(
-      (bird.y - correction < this.top || bird.y + correction >= height - this.bottom) /*hit vertically */
-      && (rightEnd >= bird.x && bird.x + 16 > this.x)){ 
-
-      console.log(bird.y + " " + bird.y + correction, this.top, " hit");
-        //bird.x = 64
-        //pipes.x capatul din stanga
-        //pipes.x + pipes.w = 96 => capatul din dreapta
-
+    if((bird.y < this.top || bird.y + correction >= height - this.bottom ) /*hit vertically */ && (rightEnd >= bird.x && bird.x + 16 > this.x)) { 
       return true;
     } else {
       return false;

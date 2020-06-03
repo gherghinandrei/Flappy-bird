@@ -17,7 +17,7 @@ class Bird {
 
   show() {
     fill(255);
-    ellipse(this.x, this.y, 32, 32);
+    image(sars, this.x, this.y, 32, 32); 
   }
 
 
